@@ -8,41 +8,72 @@
     
     <!-- Don't use this in production: -->
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./style5.css" />
   </head>
   <body>
     <div id="root"></div>
 		<script type="text/babel">
 		
-		function HelloWorld(props){
+		function Title(props){
 			return(
-				<div>
-					 <h1> Project React JS </h1>
-					 <p> Hello {props.name}</p>
-					 <MyAgeClass 
-					 age={props.age}  
-					 adult="Yes" location={props.location}/>
-				</div>
-				);
+			<React.Fragment>	
+				<h1>{props.title}</h1>
+				<p>Edited {props.count}</p>	
+			</React.Fragment>
+			)}
+				
+
+			
+		class HotNews extends React.Component{
+		
+		constructor(props){
+			super(props);
+			
+			this.state = {
+				totalEditCount: 0,
+				totalDeleteCount: 0
+			};
+		}
+		
+		edit(){
+				alert("Edit button Clicked.");
+				this.setState({
+				totalEditCount: this.state.totalEditCount + 1
+				});				
 			}
-		
-		
-		class MyAgeClass extends React.Component{
-			render(){
-				var props = this.props;
+			
+		delete(){
+				alert("Delete button clicked.");
+				this.setState({
+				totalDeleteCount: this.state.totalDeleteCount + 1
+				});
+			}
+			
+		render(){
+			const props = this.props;
+			const totalEditCount = this.state.totalEditCount;
+			const totalDeleteCount = this.state.totalDeleteCount;
 				return(
-					<h2>My Age : {props.age}  
-						Adult? : {props.adult}
-						Location : {props.location}
-					</h2>
-				);
+					<div className="newsContainer">
+						<Title title={props.title} count={totalEditCount}/>
+						<p> {props.children}</p>
+						
+						<div className="action">
+							<button className="edit" onClick={() => this.edit()}>Edit {!!totalEditCount && (<span className="editCount">{totalEditCount}</span>)}</button>
+							<button className="delete" onClick={() => this.delete()}>Delete {!!totalDeleteCount && (<span className="deleteCount">{totalDeleteCount}</span>)}</button>
+							
+						</div>
+						
+					</div>
+				)
 			}
 		}
 		
 		ReactDOM.render(
-			<div>
-				<HelloWorld name="Sumon" age="27" location="Barisal"/>				
-				<HelloWorld name="Sarkar" age="25" location="Gazipur"/>
-				
+			<div className="container">
+				<HotNews title="News 1">Mostafiz plays today.</HotNews>
+				<HotNews title="News 2">Bersolena is the best.</HotNews>
+						
 			</div>,
 			document.getElementById('root')
 		);
