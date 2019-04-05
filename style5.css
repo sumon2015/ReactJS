@@ -1,0 +1,44 @@
+.container{
+	border:1px solid red;
+	margin: 0 auto;
+	background-color: black;
+
+}
+
+.newsContainer{
+		font-size: 20px;
+		color:white;
+		padding:15px;
+		border: 1px inset;	
+}
+
+button{
+	
+	padding:10px 15px;
+}
+.edit{
+	background:Green;
+	color:white;	
+}
+
+.delete{
+	background:red;
+	color:white;
+	margin-left: 10px;
+}
+
+.editCount{
+	color:white;
+	border:1px solid black;
+	padding:2px 5px;
+	border-radius:50%;
+	margin-left: 5px;
+}
+
+.deleteCount{
+	border: 1px solid black;
+	color: white;
+	padding:2px 5px;
+	border-radius:50%;
+	margin-left: 5px;
+}

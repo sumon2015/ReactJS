@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./style5.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+		<script type="text/babel">
+		
+				
+		class HotNews extends React.Component{
+		
+		constructor(props){
+			super(props);
+			
+			this.state = {
+				totalEditCount: 0,
+				totalDeleteCount: 0
+			};
+		}
+		
+		edit(){
+				alert("Edit button Clicked.");
+				this.setState({
+				totalEditCount: this.state.totalEditCount + 1
+				});				
+			}
+			
+		delete(){
+				alert("Delete button clicked.");
+				this.setState({
+				totalDeleteCount: this.state.totalDeleteCount + 1
+				});
+			}
+			
+		render(){
+			const props = this.props;
+			const totalEditCount = this.state.totalEditCount;
+			const totalDeleteCount = this.state.totalDeleteCount;
+				return(
+					<div className="newsContainer">
+						<h1> {props.children}</h1>
+						<div className="action">
+							<button className="edit" onClick={() => this.edit()}>Edit {!!totalEditCount && (<span className="editCount">{totalEditCount}</span>)}</button>
+							<button className="delete" onClick={() => this.delete()}>Delete {!!totalDeleteCount && (<span className="deleteCount">{totalDeleteCount}</span>)}</button>
+							
+						</div>
+						
+					</div>
+				)
+			}
+		}
+		
+		ReactDOM.render(
+			<div className="container">
+				<HotNews>Mostafiz plays today.</HotNews>
+				<HotNews>Bersolena is the best.</HotNews>
+						
+			</div>,
+			document.getElementById('root')
+		);
+		
+		 
+		</script>
+    
+  </body>
+</html>
